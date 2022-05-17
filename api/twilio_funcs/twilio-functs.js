@@ -47,15 +47,16 @@ exports.sendSms = (req, res) => {
                     res.json({ action: `Send SMS`, response: message })
                 )
                 .catch((error) => {
-                    res.json(error);
+                    res.json(error).status(400);
                 });
         } else {
+            res.status(400);
             throw error;
         }
     } catch {
         res.json(
             "Error: Insert keys 'to' (telefone number) and 'message' (your message)"
-        );
+        ).status(400);
     }
 };
 
@@ -103,14 +104,15 @@ exports.sendWhatsapp = (req, res) => {
                     res.json({ action: `Send whatsapp`, response: message.sid })
                 )
                 .catch((error) => {
-                    res.json(error);
+                    res.json(error).status(400);
                 });
         } else {
+            res.status(400);
             throw error;
         }
     } catch {
         res.json(
             "Error: Insert keys 'to' (telefone number) and 'message' (your message)"
-        );
+        ).status(400);
     }
 };

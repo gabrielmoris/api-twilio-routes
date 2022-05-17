@@ -7,4 +7,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 routes(app);
 
+app.get("/*", (req, res) => {
+    res.json({ response: "404 This URI doesn't exist" }).status(404);
+});
+
+module.exports = app;
+
 app.listen(3000, () => console.log("app listenning in 3000"));
